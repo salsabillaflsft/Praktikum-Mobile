@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private TextView tvNama,tvNIM,tvIPK;
+    private TextView tvNama,tvNIM,tvHuruf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,15 +16,15 @@ public class MainActivity2 extends AppCompatActivity {
 
         tvNama = findViewById(R.id.tv_nama);
         tvNIM = findViewById(R.id.tv_nim);
-        tvIPK = findViewById(R.id.tv_ipk);
+        tvHuruf = findViewById(R.id.tv_huruf);
 
         Bundle b = getIntent().getExtras();
         String nama = b.getString("nama");
         String nim = b.getString("nim");
-        String nilai = b.getString("nilai");
+        String huruf = b.getString("nilai");
         tvNama.setText(nama);
         tvNIM.setText(nim);
-        tvIPK.setText(nilai);
+        tvHuruf.setText(huruf);
 
     }
 

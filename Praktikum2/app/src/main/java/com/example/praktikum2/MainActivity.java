@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnHasil;
     private EditText etNama, etNIM, etIPK;
-    private TextView txtHasil;
+    private TextView tvHuruf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,48 +25,59 @@ public class MainActivity extends AppCompatActivity {
         etNama = findViewById(R.id.et_nama);
         etNIM = findViewById(R.id.et_nim);
         etIPK = findViewById(R.id.et_ipk);
+        tvHuruf = findViewById(R.id.tv_huruf);
 
 
         btnHasil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!etIPK.getText().toString().equals("")){
-                    String sIPK = etIPK.getText().toString();
                     double ipk = Double.parseDouble(etIPK.getText().toString());
-                    String hasil="";
+                    String hasil = "";
 
-                    if (ipk <= 4.00 && ipk > 3.66)
+                    if (ipk <= 4.00 && ipk > 3.66) {
                         hasil = "A";
-                    else if (ipk <= 3.66 && ipk > 3.33)
+                    }
+                    else if (ipk <= 3.66 && ipk > 3.33) {
                         hasil = "A-";
-                    else if (ipk <= 3.33 && ipk > 3.00)
+                    }
+                    else if (ipk <= 3.33 && ipk > 3.00) {
                         hasil = "B+";
-                    else if (ipk <= 3.00 && ipk > 2.66)
+                    }
+                    else if (ipk <= 3.00 && ipk > 2.66) {
                         hasil = "B";
-                    else if (ipk <= 2.66 && ipk > 2.33)
+                    }
+                    else if (ipk <= 2.66 && ipk > 2.33) {
                         hasil = "B-";
-                    else if (ipk <= 2.33 && ipk > 2.00)
+                    }
+                    else if (ipk <= 2.33 && ipk > 2.00) {
                         hasil = "C+";
-                    else if (ipk <= 2.00 && ipk > 1.66)
+                    }
+                    else if (ipk <= 2.00 && ipk > 1.66) {
                         hasil = "C";
-                    else if (ipk <= 1.66 && ipk > 1.33)
+                    }
+                    else if (ipk <= 1.66 && ipk > 1.33) {
                         hasil = "C-";
-                    else if (ipk <= 1.33 && ipk > 1.00)
+                    }
+                    else if (ipk <= 1.33 && ipk > 1.00) {
                         hasil = "D+";
-                    else if (ipk == 1.00)
+                    }
+                    else if (ipk == 1.00) {
                         hasil = "D";
-                    txtHasil.setText(hasil);
+                    }
+                    else{
+                        hasil = "E";
+                    }
+                    tvHuruf.setText(hasil);
                 }
-                String sNama = etNama.getText().toString();
-                String sNIM = etNIM.getText().toString();
-                String sIPK = etIPK.getText().toString();
 
 
 
                 Intent i = new Intent(MainActivity.this, MainActivity2.class);
-                i.putExtra("nama", sNama);
-                i.putExtra("nim", sNIM);
-                i.putExtra("nilai", txtHasil.getText().toString());
+                i.putExtra("nama", etNama.getText().toString());
+                i.putExtra("nim", etNIM.getText().toString());
+                i.putExtra("nilai", tvHuruf.getText().toString());
+
                 startActivity(i);
             }
         });

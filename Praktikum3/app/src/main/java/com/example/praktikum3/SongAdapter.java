@@ -80,7 +80,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
             songArtwork = itemView.findViewById(R.id.song_artwork);
             songName = itemView.findViewById(R.id.song_name);
             songDetails = itemView.findViewById(R.id.song_details);
-            constraintLayout = itemView.findViewById(R.id.constraintLayout);
+            constraintLayout = itemView.findViewById(R.id.c_layout);
         }
     }
 }

@@ -54,18 +54,28 @@ public class HomeFragment extends Fragment implements DataAdapter.ItemClickListe
     }
 
     private void buildListData() {
-        list.add(new DataModel("coba","aaaa"));
+        list.add(new DataModel("Bandung","3,5 jam berkendara"));
+        list.add(new DataModel("Batu","7 jam berkendara"));
+        list.add(new DataModel("Lembang","4 jam berkendara"));
+        list.add(new DataModel("Bogor","5 jam berkendara"));
+        list.add(new DataModel("Depok","3 jam berkendara"));
+        list.add(new DataModel("Sewon","2,5 jam berkendara"));
+        list.add(new DataModel("Semarang","3 jam berkendara"));
+        list.add(new DataModel("Surabaya","6,5 jam berkendara"));
+        list.add(new DataModel("Yogyakarta","3,5 jam berkendara"));
+        list.add(new DataModel("Malang","5 jam berkendara"));
 
     }
 
     @Override
     public void onItemClick(DataModel dataModel) {
-        Fragment fragment = DetailFragment.newInstance(dataModel.getName());
-
+        Fragment fragment;
+        fragment = DetailFragment.newInstance(dataModel.getName(), dataModel.getDetail());
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-        transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("main_fragment"));
+        transaction.hide(getActivity().getSupportFragmentManager().findFragmentById(R.id.main_frame));
+       // transaction.replace(R.id.main_frame, fragment, "detail_fragment");
         transaction.add(R.id.main_frame, fragment);
         transaction.addToBackStack(null);
         transaction.commit();

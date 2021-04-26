@@ -9,33 +9,42 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import android.view.View;
 
-public class CallFragment extends Fragment{
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+public class CallFragment extends Fragment {
 
     private static final int REQUEST_PHONE_CALL = 1;
 
+    View view;
+    Button btn;
     public CallFragment() {
 
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view =  inflater.inflate(R.layout.fragment_call, container, false);
+        btn = view.findViewById(R.id.btnCall);
+        btn.setOnClickListener(
+                v -> {
+                    Intent intentCall = new Intent(Intent.ACTION_CALL);
+                    intentCall.setData(Uri.parse("tel:+62 81234567890"));
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+                    } else {
+
+                        startActivity(intentCall);
+                    }
+                }
+        );
+        return view;
     }
 
-    public void callClick(View view) {
-        Intent intentCall = new Intent(Intent.ACTION_CALL);
-        intentCall.setData(Uri.parse("tel:999999999"));
-        if (ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
-        } else {
-
-            startActivity(intentCall);
-        }
-    }
 }
